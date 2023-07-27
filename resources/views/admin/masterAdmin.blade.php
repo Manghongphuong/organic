@@ -216,6 +216,31 @@
               </p>
             </a>
           </li>
+          <li class="nav-header">Quản Lý Banner</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Hình ảnh
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('banners.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh Sách Hình Ảnh</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('banners.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm Hình Ảnh</p>
+                </a>
+              </li>
+            </ul>
+            
+          </li>
           <li class="nav-header">Quản Lý Danh Mục</li>
           <li class="nav-item">
             <a href="#" class="nav-link">

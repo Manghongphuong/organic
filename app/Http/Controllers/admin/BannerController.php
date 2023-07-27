@@ -18,7 +18,8 @@ class BannerController extends Controller
     }
     public function index()
     {
-        return view('admin.banner.list_banner');
+        $banners = $this->bannerModel->all();
+        return view('admin.banner.list_banner', ['banners'=>$banners]);
     }
 
     /**
@@ -61,7 +62,11 @@ class BannerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editbanner = Banner::find($id);
+        if($editbanner == null){
+            return redirect('/thông báo');
+        }
+        return view('admin.banner.edit_banner', ['editbanner'=>$editbanner]);
     }
 
     /**
@@ -69,7 +74,21 @@ class BannerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $upbanner = Banner::find($id);
+        if($upbanner == null){
+            return redirect('/thông báo');
+        }
+        $upbanner->detail = $request->detail;
+        if ($request->file('file_upload')) {
+            $file = $request->file('file_upload');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $path = public_path('uploads/' . $fileName);
+            $file->move(public_path('uploads'), $fileName);
+            $url = asset('uploads/' . $fileName);
+            $upbanner->img_banner = $url;
+        }
+        $upbanner->save();
+        return redirect()->route('banners.index');
     }
 
     /**
@@ -77,6 +96,8 @@ class BannerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dlbanners = Banner::find($id);
+        $dlbanners->delete();
+        return redirect()->route('banners.index');
     }
 }

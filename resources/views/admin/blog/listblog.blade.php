@@ -40,7 +40,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
+                  <table class="table">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -61,7 +61,7 @@
                           <td>{{ $item->name}}</td>
                           <td><img src="{{$item->img}}" style="width:150px;"alt=""></td>
                           <td>{{ $item->summary}}</td>
-                          <td>{{ $item->content}}</td>
+                          <td>{{substr( $item->content, 0, 100)}}</td>
                           <td>{{ $item->views}}</td>
                           <td>
                             <a href="{{ route('blogposts.edit', $item->id)}}"><button style="width: 100px" class="btn btn-primary">Sửa</button></a>
@@ -77,15 +77,7 @@
                   </table>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-right">
-                      <li class="page-item"><a class="page-link" href="#">«</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">»</a></li>
-                    </ul>
-                  </div>
+                {{ $listblog->links() }}
               </div>
               <!-- /.card -->
             </div>
